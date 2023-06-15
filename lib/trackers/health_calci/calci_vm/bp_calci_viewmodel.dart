@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -31,7 +32,7 @@ BloodPressureCategory categorizedBloodPressure(BloodPressureResult result) {
       result.diastolic! >= 80) {
     return BloodPressureCategory(
         name: 'Elevated',
-        description:
+        description: 
             'Your blood pressure is slightly above normal range and it is recommended to monitor it regularly');
   } else if (result.systolic! >= 130 &&
       result.systolic! <= 139 &&
@@ -52,7 +53,26 @@ BloodPressureCategory categorizedBloodPressure(BloodPressureResult result) {
   } else {
     return BloodPressureCategory(
         name: 'Hypertensive Crisis',
-        description: 'Your blood pressure is hypertensive crisis range. Immediate medical attention is required.');
+        description:
+            'Your blood pressure is hypertensive crisis range. Immediate medical attention is required.');
+  }
+}
+
+class BPcontroller extends GetxController {
+  int? sys;
+  int? dias;
+
+  // GlobalKey formkey = GlobalKey<FormState>();
+  final syscontroller = TextEditingController();
+  final diascontroller = TextEditingController();
+
+  void submitForm() {
+    sys = int.parse(syscontroller.text);
+    dias = int.parse(diascontroller.text);
+  }
+
+  void onclicked() {
+    submitForm();
   }
 }
 // 
